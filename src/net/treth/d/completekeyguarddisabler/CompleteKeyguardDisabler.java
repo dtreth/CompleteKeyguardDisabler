@@ -16,34 +16,18 @@ public class CompleteKeyguardDisabler implements IXposedHookLoadPackage {
 		if (lpparam.packageName.contains("com.android.keyguard")) {
 			// Now inside the 4.3+ keyguard
 			XposedBridge.log("In package " + lpparam.packageName + " [4.4]");
-			// hook the KeyguardViewMediator doKeyguardLocked method
-			XposedBridge.log("hooking method doKeyguardLocked in class 'com.android.keyguard.KeyguardViewMediator'");
+			// hook the KeyguardViewMediator showLocked method
+			XposedBridge.log("hooking method showLocked in class 'com.android.keyguard.KeyguardViewMediator'");
 			XposedHelpers.findAndHookMethod(
 				"com.android.keyguard.KeyguardViewMediator", 
 				lpparam.classLoader,
-				"doKeyguardLocked", "android.os.Bundle",
+				"showLocked", "android.os.Bundle",
 				new XC_MethodReplacement() {
 					// do a full replacement of the method
 					@Override
 					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
 						// do nothing, but log it
 						XposedBridge.log("Not locking the screen");
-						return null;
-					}
-				}
-			);
-			// hook the KeyguardViewMediator adjustStatusBarLocked method
-			XposedBridge.log("hooking method adjustStatusBarLocked in class 'com.android.keyguard.KeyguardViewMediator'");
-			XposedHelpers.findAndHookMethod(
-				"com.android.keyguard.KeyguardViewMediator", 
-				lpparam.classLoader,
-				"adjustStatusBarLocked",
-				new XC_MethodReplacement() {
-					// do a full replacement of the method
-					@Override
-					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-						// do nothing, but log it
-						XposedBridge.log("Not adjusting the statusbar (and navigation bar) [hopefully]");
 						return null;
 					}
 				}
@@ -53,34 +37,18 @@ public class CompleteKeyguardDisabler implements IXposedHookLoadPackage {
 		else if (lpparam.packageName.contains("com.android.internal.policy.impl.keyguard")) {
 			// Now inside the 4.2-4.3 keyguard
 			XposedBridge.log("In package " + lpparam.packageName + " [4.2-4.3]");
-			// hook the KeyguardViewMediator doKeyguardLocked method
-			XposedBridge.log("hooking method doKeyguardLocked in class 'com.android.internal.policy.impl.keyguard.KeyguardViewMediator'");
+			// hook the KeyguardViewMediator showLocked method
+			XposedBridge.log("hooking method showLocked in class 'com.android.internal.policy.impl.keyguard.KeyguardViewMediator'");
 			XposedHelpers.findAndHookMethod(
 				"com.android.internal.policy.impl.keyguard.KeyguardViewMediator", 
 				lpparam.classLoader,
-				"doKeyguardLocked", "android.os.Bundle",
+				"showLocked", "android.os.Bundle",
 				new XC_MethodReplacement() {
 					// do a full replacement of the method
 					@Override
 					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
 						// do nothing, but log it
 						XposedBridge.log("Not locking the screen");
-						return null;
-					}
-				}
-			);
-			// hook the KeyguardViewMediator adjustStatusBarLocked method
-			XposedBridge.log("hooking method adjustStatusBarLocked in class 'com.android.internal.policy.impl.keyguard.KeyguardViewMediator'");
-			XposedHelpers.findAndHookMethod(
-				"com.android.internal.policy.impl.keyguard.KeyguardViewMediator", 
-				lpparam.classLoader,
-				"adjustStatusBarLocked",
-				new XC_MethodReplacement() {
-					// do a full replacement of the method
-					@Override
-					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-						// do nothing, but log it
-						XposedBridge.log("Not adjusting the statusbar (and navigation bar) [hopefully]");
 						return null;
 					}
 				}
@@ -90,34 +58,18 @@ public class CompleteKeyguardDisabler implements IXposedHookLoadPackage {
 		else if (lpparam.packageName.contains("com.android.internal.policy.impl")) {
 			// Now inside the < 4.2 keyguard
 			XposedBridge.log("In package " + lpparam.packageName + " [?-4.1.2]");
-			// hook the KeyguardViewMediator doKeyguardLocked method
-			XposedBridge.log("hooking method doKeyguardLocked in class 'com.android.internal.policy.impl.keyguard.KeyguardViewMediator'");
+			// hook the KeyguardViewMediator showLocked method
+			XposedBridge.log("hooking method showLocked in class 'com.android.internal.policy.impl.keyguard.KeyguardViewMediator'");
 			XposedHelpers.findAndHookMethod(
 				"com.android.internal.policy.impl.KeyguardViewMediator", 
 				lpparam.classLoader,
-				"doKeyguardLocked",
+				"showLocked",
 				new XC_MethodReplacement() {
 					// do a full replacement of the method
 					@Override
 					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
 						// do nothing, but log it
 						XposedBridge.log("Not locking the screen");
-						return null;
-					}
-				}
-			);
-			// hook the KeyguardViewMediator adjustStatusBarLocked method
-			XposedBridge.log("hooking method adjustStatusBarLocked in class 'com.android.internal.policy.impl.KeyguardViewMediator'");
-			XposedHelpers.findAndHookMethod(
-				"com.android.internal.policy.impl.KeyguardViewMediator", 
-				lpparam.classLoader,
-				"adjustStatusBarLocked",
-				new XC_MethodReplacement() {
-					// do a full replacement of the method
-					@Override
-					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-						// do nothing, but log it
-						XposedBridge.log("Not adjusting the statusbar (and navigation bar) [hopefully]");
 						return null;
 					}
 				}
@@ -127,34 +79,18 @@ public class CompleteKeyguardDisabler implements IXposedHookLoadPackage {
 		else if (lpparam.packageName.contains("com.htc.lockscreen")) {
 			// Now inside the HTC keyguard
 			XposedBridge.log("In package " + lpparam.packageName + " [HTC]");
-			// hook the KeyguardViewMediator doKeyguardLocked method
-			XposedBridge.log("hooking method doKeyguardLocked in class 'com.htc.lockscreen.HtcKeyguardViewMediator'");
+			// hook the KeyguardViewMediator showLocked method
+			XposedBridge.log("hooking method showLocked in class 'com.htc.lockscreen.HtcKeyguardViewMediator'");
 			XposedHelpers.findAndHookMethod(
 				"com.htc.lockscreen.HtcKeyguardViewMediator", 
 				lpparam.classLoader,
-				"doKeyguardLocked", "android.os.Bundle",
+				"showLocked", "android.os.Bundle",
 				new XC_MethodReplacement() {
 					// do a full replacement of the method
 					@Override
 					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
 						// do nothing, but log it
 						XposedBridge.log("Not locking the screen");
-						return null;
-					}
-				}
-			);
-			// hook the KeyguardViewMediator adjustStatusBarLocked method
-			XposedBridge.log("hooking method adjustStatusBarLocked in class 'com.htc.lockscreen.HtcKeyguardViewMediator'");
-			XposedHelpers.findAndHookMethod(
-				"com.htc.lockscreen.HtcKeyguardViewMediator", 
-				lpparam.classLoader,
-				"adjustStatusBarLocked",
-				new XC_MethodReplacement() {
-					// do a full replacement of the method
-					@Override
-					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-						// do nothing, but log it
-						XposedBridge.log("Not adjusting the statusbar (and navigation bar) [hopefully]");
 						return null;
 					}
 				}
@@ -164,34 +100,18 @@ public class CompleteKeyguardDisabler implements IXposedHookLoadPackage {
 		else if (lpparam.packageName.contains("com.sec.android.app.keyguard")) {
 			// Now inside the Samsung keyguard
 			XposedBridge.log("In package " + lpparam.packageName + " [Samsung]");
-			// hook the KeyguardViewMediator doKeyguardLocked method
-			XposedBridge.log("hooking method doKeyguardLocked in class 'com.sec.android.app.keyguard'");
+			// hook the KeyguardViewMediator showLocked method
+			XposedBridge.log("hooking method showLocked in class 'com.sec.android.app.keyguard'");
 			XposedHelpers.findAndHookMethod(
 				"com.sec.android.app.keyguard.KeyguardViewMediator", 
 				lpparam.classLoader,
-				"doKeyguardLocked", "android.os.Bundle",
+				"showLocked", "android.os.Bundle",
 				new XC_MethodReplacement() {
 					// do a full replacement of the method
 					@Override
 					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
 						// do nothing, but log it
 						XposedBridge.log("Not locking the screen");
-						return null;
-					}
-				}
-			);
-			// hook the KeyguardViewMediator adjustStatusBarLocked method
-			XposedBridge.log("hooking method adjustStatusBarLocked in class 'com.sec.android.app.keyguard'");
-			XposedHelpers.findAndHookMethod(
-				"com.sec.android.app.keyguard.KeyguardViewMediator", 
-				lpparam.classLoader,
-				"adjustStatusBarLocked",
-				new XC_MethodReplacement() {
-					// do a full replacement of the method
-					@Override
-					protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-						// do nothing, but log it
-						XposedBridge.log("Not adjusting the statusbar (and navigation bar) [hopefully]");
 						return null;
 					}
 				}
